@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuth } from "../../../redux/features/authSlice";
 
 export default function Home() {
 	return (

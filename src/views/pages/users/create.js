@@ -69,6 +69,19 @@ export default function AddUser() {
 							<option value="owner">Owner</option>
 						</select>
 					</div>
+					<div className="px-4 py-2">
+						<label htmlFor="password" className="block text-sm text-dark">
+							Password
+						</label>
+						<input
+							type="password"
+							name="password"
+							id="password"
+							className="w-full px-4 py-1.5 rounded-md border border-gray-300 outline-none focus:border-cyan-500"
+							placeholder="Password"
+							{...register("password", { required: true })}
+						/>
+					</div>
 					<div className="py-2 mt-2 flex justify-end">
 						<button
 							type="submit"

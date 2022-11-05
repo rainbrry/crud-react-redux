@@ -1,8 +1,4 @@
-import {
-	createAsyncThunk,
-	createEntityAdapter,
-	createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const login = createAsyncThunk("auth/login", async (data) => {
@@ -11,26 +7,25 @@ export const login = createAsyncThunk("auth/login", async (data) => {
 });
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-	const response = await axios.post("http://localhost:8001/logout");
-	return response;
-});
-
-const authEntity = createEntityAdapter({
-	selectId: (auth) => auth.id,
+	await axios.get("http://localhost:8001/logout");
+	return true;
 });
 
 const authSlice = createSlice({
 	name: "authUser",
-	initialState: authEntity.getInitialState(),
+	initialState: { isLogin: false, token: null, user: null, role: null },
 	extraReducers: {
 		[login.fulfilled]: (state, action) => {
-			authEntity.setAll(state, action.payload);
+			state.isLogin = true;
+			state.token = action.payload.token;
+			state.user = action.payload.fullname;
+			state.role = action.payload.role;
 		},
 		[logout.fulfilled]: (state, action) => {
-			authEntity.removeAll(state);
+			state.isLogin = false;
+			state.token = null;
 		},
 	},
 });
 
-export const { setLogin } = authSlice.actions;
 export default authSlice.reducer;

@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sessionStorage from "redux-persist/es/storage/session";
+import { encryptTransform } from "redux-persist-transform-encrypt";
 import {
 	persistReducer,
 	persistStore,
@@ -13,10 +14,19 @@ import {
 import usersReducer from "./features/usersSlice";
 import authReducer from "./features/authSlice";
 
+const encryptor = encryptTransform({
+	secretKey: "this-is-secret-and-you-dont-know-it",
+	onError: (error) => {
+		console.log(error);
+	},
+});
+
 const persistConfig = {
 	key: "auth",
 	storage: sessionStorage,
-	whitelist: ["isLogin", "user", "token"],
+	whitelist: ["isLogin", "token", "user", "role"],
+	transforms: [encryptor],
+	debug: false,
 };
 
 const persistedReducer = persistReducer(persistConfig, authReducer);

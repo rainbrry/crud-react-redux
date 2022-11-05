@@ -1,19 +1,14 @@
-import axios from "axios";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/features/authSlice";
 
 export default function Navbar({ open, setOpen }) {
-	const redirect = useNavigate();
+	const dispatch = useDispatch();
 
-	const auth = "Hello";
+	const { auth } = useSelector((state) => state);
 
-	const logout = async () => {
-		try {
-			await axios.post("logout");
-			redirect("/");
-		} catch (err) {
-			console.log(err);
-		}
+	const signout = async () => {
+		dispatch(logout());
 	};
 
 	return (
@@ -40,9 +35,9 @@ export default function Navbar({ open, setOpen }) {
 			</div>
 			<div className="flex-none mr-10">
 				<div className="dropdown dropdown-end">
-					<div className="flex items-center" onClick={() => console.log(1)}>
+					<div className="flex items-center">
 						<label tabIndex={0} className="m-1 capitalize peer cursor-pointer">
-							{auth.fullname}
+							{auth.user}
 						</label>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -59,15 +54,13 @@ export default function Navbar({ open, setOpen }) {
 							/>
 						</svg>
 					</div>
-					<ul
-						onClick={logout}
+					<button
+						onClick={signout}
 						tabIndex={0}
-						className="dropdown-content menu hover:overflow-hidden focus:overflow-hidden shadow-lg bg-slate-200 opacity-80 rounded-box w-52"
+						className="dropdown-content menu hover:overflow-hidden focus:overflow-hidden bg-base-300 shadow-xl opacity-80 rounded-box w-52 p-4 text-lg hover:bg-gray-300 hover:text-white font-semibold"
 					>
-						<li>
-							<div>Logout</div>
-						</li>
-					</ul>
+						Logout
+					</button>
 				</div>
 			</div>
 		</div>
