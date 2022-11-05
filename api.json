@@ -8,9 +8,21 @@
     },
     {
       "id": 2,
-      "name": "ujang",
-      "username": "ujang",
+      "name": "rest",
+      "username": "rest",
       "role": "admin"
+    },
+    {
+      "name": "asdasd",
+      "username": "asd",
+      "role": "kasir",
+      "id": 3
+    },
+    {
+      "name": "asd",
+      "username": "asd",
+      "role": "kasir",
+      "id": 4
     }
   ]
 }
