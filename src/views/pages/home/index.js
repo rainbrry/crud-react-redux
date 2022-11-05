@@ -7,7 +7,7 @@ export default function Home() {
 	const getUsers = async () => {
 		await axios
 			.get("http://localhost:8001/users")
-			.then((res) => setUsers(res.data));
+			.then((res) => console.log(res.data));
 	};
 
 	useEffect(() => {

@@ -12,7 +12,7 @@ export const getUsers = createAsyncThunk("users/getUsers", async () => {
 
 export const addUser = createAsyncThunk("users/addProduct", async (data) => {
 	const response = await axios.post("http://localhost:8001/user", data);
-	return response.data;
+	return response.data.data;
 });
 
 export const updateUser = createAsyncThunk("users/updateUser", async (data) => {
@@ -20,7 +20,7 @@ export const updateUser = createAsyncThunk("users/updateUser", async (data) => {
 		`http://localhost:8001/user/${data.id}`,
 		data
 	);
-	return response.data;
+	return response.data.data;
 });
 
 export const deleteUser = createAsyncThunk("users/deleteUser", async (id) => {
@@ -44,7 +44,7 @@ const usersSlice = createSlice({
 		},
 		[updateUser.fulfilled]: (state, action) => {
 			userEntity.updateOne(state, {
-				id: action.payload.id,
+				id: action.payload._id,
 				changes: action.payload,
 			});
 		},

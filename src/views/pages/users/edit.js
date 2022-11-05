@@ -10,7 +10,7 @@ export default function EditUser({ user }) {
 	const dispatch = useDispatch();
 
 	const { register, handleSubmit, setValue, reset } = useForm();
-	const update = (data) => {
+	const update = async (data) => {
 		dispatch(updateUser(data));
 		setOpenModal(!openModal);
 		reset();
