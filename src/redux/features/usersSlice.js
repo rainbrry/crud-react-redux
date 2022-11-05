@@ -6,30 +6,30 @@ import {
 import axios from "axios";
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
-	const response = await axios.get("http://localhost:5000/users");
+	const response = await axios.get("http://localhost:8001/users");
 	return response.data;
 });
 
 export const addUser = createAsyncThunk("users/addProduct", async (data) => {
-	const response = await axios.post("http://localhost:5000/users", data);
+	const response = await axios.post("http://localhost:8001/user", data);
 	return response.data;
 });
 
 export const updateUser = createAsyncThunk("users/updateUser", async (data) => {
 	const response = await axios.patch(
-		`http://localhost:5000/users/${data.id}`,
+		`http://localhost:8001/user/${data.id}`,
 		data
 	);
 	return response.data;
 });
 
 export const deleteUser = createAsyncThunk("users/deleteUser", async (id) => {
-	await axios.delete(`http://localhost:5000/users/${id}`);
+	await axios.delete(`http://localhost:8001/user/${id}`);
 	return id;
 });
 
 const userEntity = createEntityAdapter({
-	selectId: (user) => user.id,
+	selectId: (user) => user._id,
 });
 
 const usersSlice = createSlice({

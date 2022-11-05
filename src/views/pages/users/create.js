@@ -33,11 +33,11 @@ export default function AddUser() {
 						</label>
 						<input
 							type="text"
-							name="name"
-							id="name"
+							name="fullname"
+							id="fullname"
 							className="w-full px-4 py-1.5 rounded-md border border-gray-300 outline-none focus:border-cyan-500"
-							placeholder="Name"
-							{...register("name", { required: true })}
+							placeholder="Fullname"
+							{...register("fullname", { required: true })}
 						/>
 					</div>
 					<div className="px-4 py-2">

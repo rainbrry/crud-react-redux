@@ -40,7 +40,7 @@ export default function ListUser() {
 						{users.map((user, index) => {
 							return (
 								<tr
-									key={user.id}
+									key={user._id}
 									className="border-b-2 border-gray-200 hover:bg-gray-300"
 								>
 									<td className="px-4 py-2 whitespace-nowrap">
@@ -50,7 +50,7 @@ export default function ListUser() {
 									</td>
 									<td className="px-4 py-2 whitespace-nowrap">
 										<div className="font-medium text-gray-800 capitalize">
-											{user.name}
+											{user.fullname}
 										</div>
 									</td>
 									<td className="px-4 py-2 whitespace-nowrap">
@@ -66,7 +66,7 @@ export default function ListUser() {
 									<td className="p-2 whitespace-nowrap">
 										<div className="text-md text-center flex gap-2 justify-center">
 											<EditUser user={user} />
-											<DeleteUser id={user.id} />
+											<DeleteUser id={user._id} />
 										</div>
 									</td>
 								</tr>

@@ -31,7 +31,7 @@ export default function EditUser({ user }) {
 					method="POST"
 					className="w-full text-left"
 				>
-					<input type="hidden" name="id" {...register("id")} value={user.id} />
+					<input type="hidden" name="id" {...register("id")} value={user._id} />
 					<div className="px-4 py-2">
 						<label htmlFor="fullname" className="block text-sm text-dark">
 							Fullname
@@ -40,10 +40,10 @@ export default function EditUser({ user }) {
 							type="text"
 							name="fullname"
 							className="w-full px-4 py-1.5 rounded-md border border-gray-300 outline-none focus:border-cyan-500"
-							placeholder="Name"
-							defaultValue={user.name}
+							placeholder="Fullname"
+							defaultValue={user.fullname}
 							onChange={(e) => setValue("name", e.target.value)}
-							{...register("name", { required: true })}
+							{...register("fullname", { required: true })}
 						/>
 					</div>
 					<div className="px-4 py-2">
